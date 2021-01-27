@@ -1,6 +1,8 @@
 var Car = function (x, y) {
   this.x = x;
   this.y = y;
+
+  this.draw();
 }
 
 // var drawCar = function (car) {
@@ -30,8 +32,32 @@ Car.prototype.draw = function () {
   $("body").append(this.carElement);
 }
 
-Car.prototype.moveRight = function () {
-  this.x += 5;
+Car.prototype.moveRight = function (speed) {
+  this.x += speed;
+
+  this.carElement.css({
+    left: this.x,
+    top: this.y
+  });
+}
+Car.prototype.moveLeft = function (speed) {
+  this.x -= speed;
+
+  this.carElement.css({
+    left: this.x,
+    top: this.y
+  });
+}
+Car.prototype.moveUp = function (speed) {
+  this.y -= speed;
+
+  this.carElement.css({
+    left: this.x,
+    top: this.y
+  });
+}
+Car.prototype.moveDown = function (speed) {
+  this.y += speed;
 
   this.carElement.css({
     left: this.x,
@@ -40,17 +66,14 @@ Car.prototype.moveRight = function () {
 }
 
 var tesla = new Car(20, 20);
-var nissan = new Car(100, 200);
+var nissan = new Car(20, 200);
 
-tesla.draw();
-nissan.draw();
-
-tesla.moveRight();
-tesla.moveRight();
-tesla.moveRight();
+setInterval(function() {
+  tesla.moveRight(Math.floor(Math.random() * 6));
+  nissan.moveRight(Math.floor(Math.random() * 6));
+}, 30);
 
 
-var move = setInterval(nissan.moveRight(), 1140);
 
 
 
