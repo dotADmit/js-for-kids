@@ -38,17 +38,39 @@ var circle = function (x, y, radius, fillCircle) {
   fillCircle ? ctx.fill() : ctx.stroke();
 }
 
-ctx.lineWidth = 4;
-ctx.strokeStyle = "Black";
-circle(80, 50, 30);
-circle(80, 120, 40);
-circle(70, 40, 5, true);
-circle(90, 40, 5, true);
-circle(80, 100, 5, true);
-circle(80, 120, 5, true);
-circle(80, 140, 5, true);
-ctx.fillStyle = "Orange";
-circle(80, 50, 5, true);
+function drawSnowman(x, y) {
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = "Black";
+  
+  circle(x, y, 30);
+  circle(x, y + 70, 40);
+  circle(x - 10, y - 10, 5, true);
+  circle(x + 10, y - 10, 5, true);
+  circle(x, y + 50, 5, true);
+  circle(x, y + 70, 5, true);
+  circle(x, y +90, 5, true);
+  ctx.fillStyle = "Orange";
+  circle(x, y, 5, true);
+}
+
+function drawPoints (arr) {
+  ctx.beginPath();
+  ctx.moveTo(arr[0][0], arr[0][1]);
+  for (let i = 1; i < arr.length; i++) {
+    ctx.lineTo(arr[i][0], arr[i][1]);
+  }
+  ctx.stroke();
+}
+
+var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50], [70, 90], [100, 90], [70, 120]];
+
+// drawPoints(points);
+// drawPoints(mysteryPoints);
+
+$("canvas").mousemove(function (event){
+  circle(event.offsetX, event.offsetY, 4,);
+}) 
 
 
 
